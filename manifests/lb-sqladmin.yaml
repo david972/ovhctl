@@ -1,0 +1,15 @@
+balance: "roundrobin"
+displayName: "http-sqladmin"
+farmId: 112050
+port: 80
+probe:
+  forceSsl: false
+  interval: 30
+  match: "default"
+  method: "GET"
+  port: 80
+  type: "http"
+  url: "/"
+stickiness: "cookie"
+vrackNetworkId: null
+zone: "all"

@@ -43,7 +43,7 @@ class Iploadbalancing:
         LOG.debug("uri /%s/%s/http/farm" % (resourceName, servicename))
         return self.client.get("/%s/%s/http/farm" % (resourceName, servicename))
 
-    def create_(self, servicename):
+    def create_(self):
         data = {}
         req = {}
         if not self.arguments['<filename>'] or not os.path.isfile(self.arguments['<filename>']):
@@ -55,7 +55,7 @@ class Iploadbalancing:
             except yaml.YAMLError as e:
                 LOG.error(e)
                 return {}
-        self.client.post('/%s/%s/http/farm' % (resourceName, servicename), 
+        self.client.post('/%s/%s/http/farm' % (resourceName, req['servicename']), 
             balance=req['balance'],
             displayName=req['displayName'],
             port=req['port'],
@@ -70,8 +70,7 @@ class Iploadbalancing:
         if self.arguments["get"]:
             return self.read_()
         if self.arguments["create"]:
-            print("create")
-            return []
+            return self.create_()
         if self.arguments["delete"]:
             print("delete")
             return []
